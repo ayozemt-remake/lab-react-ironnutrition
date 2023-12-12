@@ -21,9 +21,18 @@ function App() {
     const input = str.toLowerCase();
     setFood(
       input
-        ? foodData.filter((unit) => unit.name.toLowerCase().includes(input))
+        ? food.filter((unit) => unit.name.toLowerCase().includes(input))
         : [...foodData]
     );
+  };
+
+  const deleteFood = (index) => {
+    const updatedFood = [...food];
+    const updatedFoodData = [...foodData];
+    updatedFood.splice(index, 1);
+    updatedFoodData.splice(index, 1);
+    setFood(updatedFood);
+    setFoodData(updatedFoodData);
   };
 
   return (
@@ -34,7 +43,13 @@ function App() {
       <Divider>Food List</Divider>
       <Row>
         {food.map((unit, index) => {
-          return <FoodBox key={index} food={unit} />;
+          return (
+            <FoodBox
+              key={index}
+              food={unit}
+              deleteFood={() => deleteFood(index)}
+            />
+          );
         })}
       </Row>
     </div>
