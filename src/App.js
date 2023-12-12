@@ -3,29 +3,20 @@ import foods from './foods.json';
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
 import { Row, Divider } from 'antd';
+import AddFoodForm from './components/AddFoodForm';
 
 function App() {
-  const [food, setFoods] = useState(foods);
+  const [food, setFood] = useState(foods);
+
+  const addNewFood = (newFood) => {
+    const updatedFood = [newFood, ...food];
+    setFood(updatedFood);
+  };
+
   return (
     <div className="App">
       <h1 style={{ textAlign: 'center' }}>Iron Nutrition</h1>
-      {/* {food.map((unit) => {
-        return (
-          <div>
-            <h3>Food list</h3>
-            <p>{unit.name}</p>
-            <img src={unit.image} alt={unit.name} style={{ height: '150px' }} />
-          </div>
-        );
-      })} */}
-      {/* <FoodBox
-        food={{
-          name: 'Orange',
-          calories: 85,
-          image: 'https://i.imgur.com/abKGOcv.jpg',
-          servings: 1,
-        }}
-      /> */}
+      <AddFoodForm addNewFood={addNewFood} />
       <Divider>Food List</Divider>
       <Row>
         {food.map((unit, index) => {
