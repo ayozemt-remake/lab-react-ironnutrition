@@ -40,7 +40,7 @@ function AddFoodForm({ addNewFood }) {
       <label>Servings</label>
       <Input value={servings} type="number" onChange={handleServingsInput} />
 
-      <button type="submit" style={{ cursor: 'pointer' }}>
+      <button type="submit" style={{ cursor: 'pointer', marginTop: '10px' }}>
         Create
       </button>
     </form>

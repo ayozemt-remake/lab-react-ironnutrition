@@ -2,13 +2,14 @@ import './App.css';
 import foods from './foods.json';
 import { useState } from 'react';
 import FoodBox from './components/FoodBox';
-import { Row, Divider } from 'antd';
+import { Row, Divider, Button } from 'antd';
 import AddFoodForm from './components/AddFoodForm';
 import Search from './components/Search';
 
 function App() {
   const [food, setFood] = useState(foods);
   const [foodData, setFoodData] = useState(foods);
+  const [showForm, setShowForm] = useState(true);
 
   const addNewFood = (newFood) => {
     const updatedFood = [newFood, ...food];
@@ -35,10 +36,17 @@ function App() {
     setFoodData(updatedFoodData);
   };
 
+  const toggleShowForm = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <div className="App">
       <h1 style={{ textAlign: 'center' }}>Iron Nutrition</h1>
-      <AddFoodForm addNewFood={addNewFood} />
+      {showForm && <AddFoodForm addNewFood={addNewFood} />}
+      <Button style={{ margin: '20px' }} onClick={toggleShowForm}>
+        {!showForm ? 'Add new food' : 'Hide Form'}
+      </Button>
       <Search filterFoodList={filterFoodList} />
       <Divider>Food List</Divider>
       <Row>
