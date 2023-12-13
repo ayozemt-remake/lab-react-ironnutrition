@@ -60,6 +60,9 @@ function App() {
           );
         })}
       </Row>
+      {!food.length && (
+        <h1 style={{ textAlign: 'center' }}>Te comiste todo, wey 😭</h1>
+      )}
     </div>
   );
 }
